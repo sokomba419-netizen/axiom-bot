@@ -5,11 +5,9 @@ from duckduckgo_search import DDGS
 from telegram import Update,ReplyKeyboardMarkup,KeyboardButton
 from telegram.ext import ApplicationBuilder,CommandHandler,MessageHandler,ContextTypes,filters
 
-def get_env(key):
-    for line in open(".env").readlines():
-        if line.startswith(key):
-            return line.split("=",1)[1].strip()
-
+def get_env(key): 
+    return os.environ.get(key)
+    
 TELEGRAM_TOKEN=get_env("TELEGRAM_TOKEN")
 ANTHROPIC_API_KEY=get_env("ANTHROPIC_API_KEY")
 YOUR_CHAT_ID=int(get_env("YOUR_CHAT_ID"))
